@@ -20,7 +20,7 @@ export const TourModal = () => {
           </span>
         </p>
       </DialogTrigger>
-      <DialogContent className="min-w-3xl p-8">
+      <DialogContent className="min-w-3xl p-8 bg-[#FDF6ED]">
         <DialogHeader>
           <DialogTitle className="text-2xl font-medium mb-4">
             Informace o komentované prohlídce
