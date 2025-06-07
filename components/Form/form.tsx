@@ -14,6 +14,7 @@ import { Checkbox } from "../ui/checkbox";
 import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
+import { TourModal } from "@/app/components/TourModal";
 
 export type FormFieldProps = {
   type: string;
@@ -24,7 +25,7 @@ export type FormFieldProps = {
   valueAsNumber?: boolean;
 };
 
-const Form = () => {
+const Form = ({ isVisible }: { isVisible: boolean }) => {
   const {
     register,
     handleSubmit,
@@ -39,9 +40,17 @@ const Form = () => {
     await createConfirmation(data);
   };
 
+  if (!isVisible) return null;
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="max-w-lg mx-auto my-20 text-[#664e27] ">
-      <h2 className="text-2xl font-medium mb-4"> Vyplňte formulář a potvrďte svoji účast</h2>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="max-w-lg mx-auto my-20 text-[#664e27] "
+    >
+      <h2 className="text-2xl font-medium mb-4">
+        {" "}
+        Vyplňte formulář a potvrďte svoji účast
+      </h2>
       <InputWithLabel
         name="firstName"
         label="Jméno"
@@ -83,19 +92,21 @@ const Form = () => {
         name="withTour"
         control={control}
         render={({ field: { onChange, value } }) => (
-          <div className="flex items-center gap-3 my-4">
+          <div className="flex items-center my-4">
             <Checkbox
-              className="w-5 h-5 border-[#664e27]/30 data-[state=checked]:bg-[#BF4A47] data-[state=checked]:border-[#BF4A47]"
+              className="w-5 h-5 mr-2 border-[#664e27]/30 data-[state=checked]:bg-[#BF4A47] data-[state=checked]:border-[#BF4A47]"
               id="withTour"
               checked={value}
               onCheckedChange={onChange}
-              
             />
-            <Label htmlFor="withTour">S prohlídkou</Label>
+            <Label htmlFor="withTour">
+              S komentovanou prohlídkou krásných prostorů čistírny
+            </Label>
+            <TourModal />
           </div>
         )}
       />
-      <Button type="submit" className="bg-[#BF4A47] text-white">
+      <Button type="submit" className="bg-[#BF4A47] text-white rounded-2xl px-5">
         Odeslat
       </Button>
     </form>

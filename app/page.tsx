@@ -1,7 +1,14 @@
+"use client";
+
 import Form from "@/components/Form/form";
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { Tour } from "./components/Tour";
+import { useState } from "react";
 
 export default function Page() {
+  const [isFormVisible, setIsTourVisible] = useState(false);
+
   return (
     <div className="bg-[#FDF6ED]">
       <div className="flex justify-start items-center container mx-auto">
@@ -21,11 +28,11 @@ export default function Page() {
           height={300}
           className="ml-10"
         />
-        <h2 className="text-4xl  font-medium leading-relaxed uppercase max-w-xs text-center">
+        <h2 className="text-4xl font-medium leading-relaxed uppercase max-w-xs text-center">
           Budeme se brát a zveme tě na svatbu!
         </h2>
       </div>
-      <div className="flex max-w-3xl mx-auto gap-10 my-10">
+      <div className="flex max-w-3xl mx-auto gap-6 my-10">
         <div className="w-1/2 text-md">
           <p>
             Ahoj milí,
@@ -40,7 +47,9 @@ export default function Page() {
             dotazníku. Podrobnější informace o celém dni budou následovat!
             <br />
             <br />
-            Těšíme se na vás! S láskou,
+            Těšíme se na vás!
+            <br />
+            S láskou,
             <br />
             Vika + Martin
           </p>
@@ -49,7 +58,18 @@ export default function Page() {
           <Image src="/together.png" alt="together" fill />
         </div>
       </div>
-      <Form />
+      <div className="flex flex-col justify-center items-center gap-10 my-20">
+        <h2 className="text-3xl font-medium">Dorazíte na naši svatbu?</h2>
+        <div className="flex justify-center items-center gap-10">
+          <Button className="bg-[#BF4A47] text-white rounded-2xl hover:bg-[#BF4A47]/80" size="lg" onClick={() => setIsTourVisible(true)}>
+            Ano, dorazím
+          </Button>
+          <Button className="bg-[#664e27] text-white rounded-2xl hover:bg-[#664e27]/80" size="lg">
+            Ne, nedorazím
+          </Button>
+        </div>
+      </div>
+      <Form isVisible={isFormVisible} />
     </div>
   );
 }
