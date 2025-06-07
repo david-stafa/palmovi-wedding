@@ -2,6 +2,7 @@
 
 import Form from "@/components/Form/form";
 import { Button } from "@/components/ui/button";
+import { HeartIcon } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -51,8 +52,8 @@ export default function Page() {
             S láskou,
             <br />
             <br />
-            <span className="text-lg text-[#BF4A47] font-medium italic">
-              Vika + Martin
+            <span className="text-lg text-[#BF4A47] font-medium italic flex items-center gap-2">
+              Vika + Martin <HeartIcon className="w-5 h-5" strokeWidth={2} />
             </span>
           </p>
         </div>
