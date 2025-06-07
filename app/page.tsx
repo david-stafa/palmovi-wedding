@@ -3,7 +3,6 @@
 import Form from "@/components/Form/form";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { Tour } from "./components/Tour";
 import { useState } from "react";
 
 export default function Page() {
