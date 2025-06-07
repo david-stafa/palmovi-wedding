@@ -77,7 +77,7 @@ const Form = ({ isVisible }: { isVisible: boolean }) => {
         control={control}
         render={({ field: { onChange, value } }) => (
           <div className="flex flex-col gap-3 my-4">
-            <Label htmlFor="note">Poznámka</Label>
+            <Label htmlFor="note">Zanechte nám vzkaz</Label>
             <Textarea
               className="w-full border-[#664e27]/30"
               name="note"
