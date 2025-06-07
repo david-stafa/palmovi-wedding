@@ -9,14 +9,13 @@ export default function Page() {
   const [isFormVisible, setIsTourVisible] = useState(false);
 
   return (
-    <div className="bg-[#FDF6ED]">
-      <div className="flex justify-start items-center container mx-auto">
+    <div className="bg-[#FDF6ED] ">
+      <div className="flex justify-start items-center max-w-3xl mx-auto mb-5  ">
         <Image
           src="/main-image.png"
           alt="vika&martin"
           width={200}
           height={100}
-          className="ml-10"
         />
       </div>
       <div className="flex justify-center items-center gap-5">
