@@ -10,13 +10,14 @@ export default function Page() {
 
   return (
     <div className="bg-[#FDF6ED] ">
-      <div className="flex justify-start items-center max-w-3xl mx-auto mb-5  ">
+      <div className="flex justify-between items-center max-w-3xl mx-auto mb-5  ">
         <Image
           src="/main-image.png"
           alt="vika&martin"
           width={200}
           height={100}
         />
+        <p className="text-2xl font-medium text-[#BF4A47]">20. září 2025</p>
       </div>
       <div className="flex justify-center items-center gap-5">
         <Image
@@ -32,7 +33,7 @@ export default function Page() {
       </div>
       <div className="flex max-w-3xl mx-auto gap-6 my-10">
         <div className="w-1/2 text-md">
-          <p>
+          <p className="text-justify">
             Ahoj milí,
             <br />
             <br />s radostí bychom Vás chtěli pozvat na naši svatbu, která
@@ -41,7 +42,7 @@ export default function Page() {
             <br />
             <br />
             Abychom to celé mohli naplánovat tak, aby se všem dobře tančilo,
-            jedlo a bavilo, budeme rádi, když nám pomůžete vyplněním krátkého
+            jedlo a pilo, budeme rádi, když nám pomůžete vyplněním krátkého
             dotazníku. Podrobnější informace o celém dni budou následovat!
             <br />
             <br />
@@ -49,7 +50,10 @@ export default function Page() {
             <br />
             S láskou,
             <br />
-            Vika + Martin
+            <br />
+            <span className="text-lg text-[#BF4A47] font-medium italic">
+              Vika + Martin
+            </span>
           </p>
         </div>
         <div className="relative rounded-2xl overflow-hidden aspect-square w-1/2">
@@ -59,10 +63,17 @@ export default function Page() {
       <div className="flex flex-col justify-center items-center gap-10 my-20">
         <h2 className="text-3xl font-medium">Dorazíte na naši svatbu?</h2>
         <div className="flex justify-center items-center gap-10">
-          <Button className="bg-[#BF4A47] text-white rounded-2xl hover:bg-[#BF4A47]/80" size="lg" onClick={() => setIsTourVisible(true)}>
+          <Button
+            className="bg-[#BF4A47] text-white rounded-2xl hover:bg-[#BF4A47]/80"
+            size="lg"
+            onClick={() => setIsTourVisible(true)}
+          >
             Ano, dorazím
           </Button>
-          <Button className="bg-[#664e27] text-white rounded-2xl hover:bg-[#664e27]/80" size="lg">
+          <Button
+            className="bg-[#664e27] text-white rounded-2xl hover:bg-[#664e27]/80"
+            size="lg"
+          >
             Ne, nedorazím
           </Button>
         </div>

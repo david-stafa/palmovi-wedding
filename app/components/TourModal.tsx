@@ -1,7 +1,6 @@
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -25,7 +24,7 @@ export const TourModal = () => {
           <DialogTitle className="text-2xl font-medium mb-4">
             Informace o komentované prohlídce
           </DialogTitle>
-          <DialogDescription className="flex flex-row gap-8 w-full">
+          <div className="flex flex-row gap-8 w-full">
             <div className="min-w-5/12 relative">
               <Image
                 src="/cistirny.jpg"
@@ -34,7 +33,7 @@ export const TourModal = () => {
                 className="rounded-2xl"
               />
             </div>
-            <p className="text-base text-[#664e27]">
+            <p className="text-base text-[#664e27] text-justify">
               Stará čistírna odpadních vod v Bubenči je industriální skvost
               postavený v roce 1906, tedy z doby, kdy se ještě všechno točilo na
               páru. Čistila vodu pro celou Prahu až do roku 1967 a dnes je z ní
@@ -48,7 +47,7 @@ export const TourModal = () => {
               <br />
               Celé to zabere cca 35 minut a je to fakt zážitek!
             </p>
-          </DialogDescription>
+          </div>
         </DialogHeader>
       </DialogContent>
     </Dialog>
