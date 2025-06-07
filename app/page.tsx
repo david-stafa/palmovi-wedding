@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function Page() {
   return (
     <div className="bg-[#FDF6ED]">
-      <div className="flex justify-start items-center">
+      <div className="flex justify-start items-center container mx-auto">
         <Image
           src="/main-image.png"
           alt="vika&martin"
