@@ -57,6 +57,10 @@ const Form = ({
     // Show error messages if response is not successful
     if (!response.success) {
       for (const [field, messages] of Object.entries(response.error || {})) {
+        setError("root", {
+          type: "server",
+          message: "Nastala chyba při zpracování formuláře. Zkuste to prosím znovu.",
+        });
         setError(field as keyof FormSchema | "root", {
           type: "server",
           message: messages[0],
@@ -85,6 +89,7 @@ const Form = ({
       >
         Vyplňte formulář a potvrďte svoji účast
       </motion.h2>
+      {errors.root && <p className="text-red-500 italic text-sm">{errors.root.message}</p>}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

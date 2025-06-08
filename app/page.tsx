@@ -181,6 +181,7 @@ export default function Page() {
             <Button
               className="bg-[#664e27] text-white rounded-2xl hover:bg-[#664e27]/80"
               size="lg"
+              onClick={() => setIsFormVisible(false)}
             >
               Ne, nedorazím
             </Button>
