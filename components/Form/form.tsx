@@ -46,14 +46,14 @@ const Form = ({ isVisible }: { isVisible: boolean }) => {
   return (
     <motion.form
       onSubmit={handleSubmit(onSubmit)}
-      className="max-w-lg mx-auto my-20 text-[#664e27] scroll-mt-8"
+      className="max-w-lg mx-auto mb-10 md:mb-20 mt-15 text-[#664e27] scroll-mt-8"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
       id="form"
     >
       <motion.h2 
-        className="text-2xl font-medium mb-4"
+        className="text-xl md:text-2xl font-medium mb-4"
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.2, duration: 0.6 }}
