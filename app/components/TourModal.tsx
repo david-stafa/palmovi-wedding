@@ -28,7 +28,7 @@ export const TourModal = () => {
           </motion.span>
         </motion.p>
       </DialogTrigger>
-      <DialogContent className="md:p-8 md:min-w-3xl bg-[#FDF6ED]">
+      <DialogContent className="md:p-8 md:min-w-3xl bg-[#FDF6ED] max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <motion.div
             initial={{ opacity: 0, y: -20 }}
