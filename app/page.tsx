@@ -6,6 +6,7 @@ import { HeartIcon } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import * as motion from "motion/react-client";
+import Link from "next/link";
 
 export default function Page() {
   const [isFormVisible, setIsTourVisible] = useState(false);
@@ -14,9 +15,9 @@ export default function Page() {
     setIsTourVisible(true);
     // Add a small delay to ensure the form is rendered before scrolling
     setTimeout(() => {
-      document.getElementById('form')?.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
+      document.getElementById("form")?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
       });
     }, 200);
   };
@@ -109,7 +110,15 @@ export default function Page() {
             <br />
             <br />s radostí bychom Vás chtěli pozvat na naši svatbu, která
             proběhne <b>20. září 2025</b> v prostorách Staré čistírny odpadních
-            vod Bubeneč (Papírenská 199/6, Praha 6).
+            vod Bubeneč{" "}
+            <Link
+              href="https://www.google.com/maps/place/Pap%C3%ADrensk%C3%A1+199%2F6,+160+00+Praha+6-Bubene%C4%8D/@50.1101276,14.3996204,17z/data=!3m1!4b1!4m6!3m5!1s0x470b952c2dc171e1:0x2c908341d0e61a7e!8m2!3d50.1101276!4d14.4022007!16s%2Fg%2F11pw2w11wn?entry=ttu&g_ep=EgoyMDI1MDYwNC4wIKXMDSoASAFQAw%3D%3D"
+              target="_blank"
+              className="text-[#BF4A47] underline"
+            >
+              (Papírenská 199/6, Praha 6)
+            </Link>
+            .
             <br />
             <br />
             Abychom to celé mohli naplánovat tak, aby se všem dobře tančilo,
