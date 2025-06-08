@@ -30,8 +30,10 @@ export type FormFieldProps = {
 
 const Form = ({
   isVisible,
+  setIsVisible,
 }: {
   isVisible: boolean;
+  setIsVisible: (isVisible: boolean) => void;
 }) => {
 
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
@@ -190,7 +192,10 @@ const Form = ({
           {isSubmitting ? "Odesílám..." : "Odeslat"}
         </Button>
       </motion.div>
-      <SuccessModal isOpen={isSuccessModalOpen} onClose={() => setIsSuccessModalOpen(false)} />
+      <SuccessModal isOpen={isSuccessModalOpen} onClose={() => {
+        setIsSuccessModalOpen(false)
+        setIsVisible(false)
+      }} />
     </motion.form>
   );
 };

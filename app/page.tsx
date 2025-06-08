@@ -188,7 +188,7 @@ export default function Page() {
           </motion.div>
         </motion.div>
       </motion.div>
-      <Form isVisible={isFormVisible} />
+      <Form isVisible={isFormVisible} setIsVisible={setIsFormVisible} />
     </motion.div>
   );
 }
