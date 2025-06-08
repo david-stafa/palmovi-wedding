@@ -205,7 +205,7 @@ export default function Page() {
         </motion.div>
       </motion.div>
       <Form isVisible={isFormVisible} setIsVisible={setIsFormVisible} />
-      <div className="text-center text-sm text-gray-500 mt-10 mb-4">
+      <div className="text-center text-xs text-gray-500 mt-10 mb-2">
         Made with ❤️ by David
       </div>
     </motion.div>
