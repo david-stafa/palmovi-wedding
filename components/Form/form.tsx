@@ -15,6 +15,7 @@ import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
 import { TourModal } from "@/app/components/TourModal";
+import * as motion from "motion/react-client";
 
 export type FormFieldProps = {
   type: string;
@@ -43,40 +44,71 @@ const Form = ({ isVisible }: { isVisible: boolean }) => {
   if (!isVisible) return null;
 
   return (
-    <form
+    <motion.form
       onSubmit={handleSubmit(onSubmit)}
-      className="max-w-lg mx-auto my-20 text-[#664e27] "
+      className="max-w-lg mx-auto my-20 text-[#664e27] scroll-mt-8"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      id="form"
     >
-      <h2 className="text-2xl font-medium mb-4">
-        {" "}
+      <motion.h2 
+        className="text-2xl font-medium mb-4"
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.2, duration: 0.6 }}
+      >
         Vyplňte formulář a potvrďte svoji účast
-      </h2>
-      <InputWithLabel
-        name="firstName"
-        label="Jméno"
-        register={register}
-        error={errors.firstName}
-        type="text"
-      />
-      <InputWithLabel
-        name="lastName"
-        label="Příjmení"
-        register={register}
-        error={errors.lastName}
-        type="text"
-      />
-      <InputWithLabel
-        name="email"
-        label="E-mail"
-        register={register}
-        error={errors.email}
-        type="email"
-      />
+      </motion.h2>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3, duration: 0.6 }}
+      >
+        <InputWithLabel
+          name="firstName"
+          label="Jméno"
+          register={register}
+          error={errors.firstName}
+          type="text"
+        />
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4, duration: 0.6 }}
+      >
+        <InputWithLabel
+          name="lastName"
+          label="Příjmení"
+          register={register}
+          error={errors.lastName}
+          type="text"
+        />
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5, duration: 0.6 }}
+      >
+        <InputWithLabel
+          name="email"
+          label="E-mail"
+          register={register}
+          error={errors.email}
+          type="email"
+        />
+      </motion.div>
       <Controller
         name="note"
         control={control}
         render={({ field: { onChange, value } }) => (
-          <div className="flex flex-col gap-3 my-4">
+          <motion.div 
+            className="flex flex-col gap-3 my-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.6 }}
+          >
             <Label htmlFor="note">Zanechte nám vzkaz</Label>
             <Textarea
               className="w-full border-[#664e27]/30"
@@ -84,7 +116,7 @@ const Form = ({ isVisible }: { isVisible: boolean }) => {
               onChange={onChange}
               value={value}
             />
-          </div>
+          </motion.div>
         )}
       />
 
@@ -92,7 +124,12 @@ const Form = ({ isVisible }: { isVisible: boolean }) => {
         name="withTour"
         control={control}
         render={({ field: { onChange, value } }) => (
-          <div className="flex items-center my-4">
+          <motion.div 
+            className="flex items-center my-4"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.7, duration: 0.6 }}
+          >
             <Checkbox
               className="w-5 h-5 mr-2 border-[#664e27]/30 data-[state=checked]:bg-[#BF4A47] data-[state=checked]:border-[#BF4A47]"
               id="withTour"
@@ -102,14 +139,27 @@ const Form = ({ isVisible }: { isVisible: boolean }) => {
             <Label htmlFor="withTour">
               S komentovanou prohlídkou krásných prostorů čistírny
             </Label>
-            <TourModal />
-          </div>
+          </motion.div>
         )}
       />
-      <Button type="submit" className="bg-[#BF4A47] text-white rounded-2xl px-5">
-        Odeslat
-      </Button>
-    </form>
+
+      <TourModal />
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.8, duration: 0.6 }}
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+      >
+        <Button
+          type="submit"
+          className="bg-[#BF4A47] text-white rounded-2xl px-5 block mt-5"
+        >
+          Odeslat
+        </Button>
+      </motion.div>
+    </motion.form>
   );
 };
 
