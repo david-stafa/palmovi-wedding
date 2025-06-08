@@ -9,7 +9,7 @@ export const createConfirmation = async (formData: FormSchema) => {
   if (!result.success) {
     return {
       success: false,
-      error: result.error.message,
+      error: result.error.formErrors.fieldErrors,
     };
   }
 

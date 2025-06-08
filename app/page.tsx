@@ -9,10 +9,10 @@ import * as motion from "motion/react-client";
 import Link from "next/link";
 
 export default function Page() {
-  const [isFormVisible, setIsTourVisible] = useState(false);
+  const [isFormVisible, setIsFormVisible] = useState(false);
 
   const scrollToForm = () => {
-    setIsTourVisible(true);
+    setIsFormVisible(true);
     // Add a small delay to ensure the form is rendered before scrolling
     setTimeout(() => {
       document.getElementById("form")?.scrollIntoView({
@@ -31,6 +31,7 @@ export default function Page() {
         duration: 1,
         ease: "easeOut",
       }}
+      id="header"
     >
       {/* Header */}
       <motion.div
@@ -138,13 +139,12 @@ export default function Page() {
         </motion.div>
         {/* Photo */}
         <motion.div
-          className="relative rounded-2xl overflow-hidden aspect-square w-full md:w-1/2"
+          className="relative rounded-2xl overflow-hidden w-9/12 min-h-92 mx-auto md:w-5/12"
           initial={{ x: 50, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ delay: 1.2, duration: 0.8 }}
-          whileHover={{ scale: 1.02 }}
         >
-          <Image src="/together-with-legs-2.png" alt="together" fill />
+          <Image src="/together-with-legs-2.png" alt="together" fill className="object-cover rounded-2xl overflow-hidden" />
         </motion.div>
       </motion.div>
       {/* Buttons */}

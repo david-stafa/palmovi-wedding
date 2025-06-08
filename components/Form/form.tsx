@@ -16,6 +16,8 @@ import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
 import { TourModal } from "@/app/components/TourModal";
 import * as motion from "motion/react-client";
+import { useState } from "react";
+import { SuccessModal } from "@/app/components/SuccessModal";
 
 export type FormFieldProps = {
   type: string;
@@ -26,19 +28,42 @@ export type FormFieldProps = {
   valueAsNumber?: boolean;
 };
 
-const Form = ({ isVisible }: { isVisible: boolean }) => {
+const Form = ({
+  isVisible,
+}: {
+  isVisible: boolean;
+}) => {
+
+  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
   const {
     register,
     handleSubmit,
     control,
-    formState: { errors },
+    formState: { errors, isSubmitting },
+    reset,
+    setError,
   } = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     mode: "onBlur",
   });
 
   const onSubmit = async (data: FormSchema) => {
-    await createConfirmation(data);
+    const response = await createConfirmation(data);
+    if (response.success) {
+      setIsSuccessModalOpen(true);
+      reset();
+    }
+
+    // Show error messages if response is not successful
+    if (!response.success) {
+      for (const [field, messages] of Object.entries(response.error || {})) {
+        setError(field as keyof FormSchema | "root", {
+          type: "server",
+          message: messages[0],
+        });
+      }
+      throw new Error("Could not create reservation");
+    }
   };
 
   if (!isVisible) return null;
@@ -52,7 +77,7 @@ const Form = ({ isVisible }: { isVisible: boolean }) => {
       transition={{ duration: 0.6 }}
       id="form"
     >
-      <motion.h2 
+      <motion.h2
         className="text-xl md:text-2xl font-medium mb-4"
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
@@ -103,7 +128,7 @@ const Form = ({ isVisible }: { isVisible: boolean }) => {
         name="note"
         control={control}
         render={({ field: { onChange, value } }) => (
-          <motion.div 
+          <motion.div
             className="flex flex-col gap-3 my-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -124,7 +149,7 @@ const Form = ({ isVisible }: { isVisible: boolean }) => {
         name="withTour"
         control={control}
         render={({ field: { onChange, value } }) => (
-          <motion.div 
+          <motion.div
             className="flex items-center my-4"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -155,10 +180,12 @@ const Form = ({ isVisible }: { isVisible: boolean }) => {
         <Button
           type="submit"
           className="bg-[#BF4A47] text-white rounded-2xl px-5 block mt-5"
+          disabled={isSubmitting}
         >
-          Odeslat
+          {isSubmitting ? "Odesílám..." : "Odeslat"}
         </Button>
       </motion.div>
+      <SuccessModal isOpen={isSuccessModalOpen} onClose={() => setIsSuccessModalOpen(false)} />
     </motion.form>
   );
 };
