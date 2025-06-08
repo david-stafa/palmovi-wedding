@@ -10,7 +10,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("PALMOVI_DATABASE_URL")
+  url      = env("PALMOVI_NEON_POSTGRES_URL")
 }
 
 model Confirmation {
