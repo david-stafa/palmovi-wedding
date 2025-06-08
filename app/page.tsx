@@ -7,9 +7,12 @@ import Image from "next/image";
 import { useState } from "react";
 import * as motion from "motion/react-client";
 import Link from "next/link";
+import { Particles } from "@/components/Particles/Particles";
 
 export default function Page() {
   const [isFormVisible, setIsFormVisible] = useState(false);
+  const [happyParticles, setHappyParticles] = useState(false);
+  const [sadParticles, setSadParticles] = useState(false);
 
   const scrollToForm = () => {
     setIsFormVisible(true);
@@ -33,6 +36,8 @@ export default function Page() {
       }}
       id="header"
     >
+      {happyParticles && <Particles content="😍" count={200} />}
+      {sadParticles && <Particles content="😭" count={150} />}
       {/* Header */}
       <motion.div
         className="flex justify-between items-center max-w-3xl mx-auto mb-5"
@@ -144,7 +149,12 @@ export default function Page() {
           animate={{ x: 0, opacity: 1 }}
           transition={{ delay: 1.2, duration: 0.8 }}
         >
-          <Image src="/together-with-legs-2.png" alt="together" fill className="object-cover rounded-2xl overflow-hidden" />
+          <Image
+            src="/together-with-legs-2.png"
+            alt="together"
+            fill
+            className="object-cover rounded-2xl overflow-hidden"
+          />
         </motion.div>
       </motion.div>
       {/* Buttons */}
@@ -172,7 +182,10 @@ export default function Page() {
             <Button
               className="bg-[#BF4A47] text-white rounded-2xl hover:bg-[#BF4A47]/80"
               size="lg"
-              onClick={scrollToForm}
+              onClick={() => {
+                scrollToForm();
+                setHappyParticles(true);
+              }}
             >
               Ano, dorazím
             </Button>
@@ -181,7 +194,10 @@ export default function Page() {
             <Button
               className="bg-[#664e27] text-white rounded-2xl hover:bg-[#664e27]/80"
               size="lg"
-              onClick={() => setIsFormVisible(false)}
+              onClick={() => {
+                setIsFormVisible(false);
+                setSadParticles(true);
+              }}
             >
               Ne, nedorazím
             </Button>
