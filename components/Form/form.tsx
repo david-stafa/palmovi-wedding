@@ -46,6 +46,9 @@ const Form = ({
     setError,
   } = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      withTour: false
+    },
     mode: "onBlur",
   });
 
@@ -167,6 +170,7 @@ const Form = ({
               id="withTour"
               checked={value}
               onCheckedChange={onChange}
+              defaultChecked={false}
             />
             <Label htmlFor="withTour">
               S komentovanou prohlídkou krásných prostorů čistírny
