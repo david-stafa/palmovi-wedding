@@ -2,6 +2,7 @@
 
 import { prisma } from "@/lib/prisma";
 import { FormSchema, formSchema } from "@/lib/types";
+import { revalidatePath } from 'next/cache'
 
 export const createConfirmation = async (formData: FormSchema) => {
   const result = formSchema.safeParse(formData);
@@ -24,6 +25,8 @@ export const createConfirmation = async (formData: FormSchema) => {
       },
     });
 
+    revalidatePath("/reservations");
+    
     return {
       success: true,
     };
