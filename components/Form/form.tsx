@@ -149,7 +149,7 @@ const Form = ({
               className="w-full border-[#664e27]/30"
               name="note"
               onChange={onChange}
-              value={value}
+              value={value || ""}
             />
           </motion.div>
         )}
