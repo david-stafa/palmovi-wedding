@@ -1,28 +1,19 @@
 "use client";
 
-import Form from "@/components/Form/form";
-import { Button } from "@/components/ui/button";
 import { HeartIcon } from "lucide-react";
-import Image from "next/image";
-import { useState } from "react";
 import * as motion from "motion/react-client";
+import Image from "next/image";
 import Link from "next/link";
-import { Particles } from "@/components/Particles/Particles";
+import AditionalInfoAccordion from "./components/AditionalInfoAccordion";
+import { Button } from "@/components/ui/button";
 
 export default function Page() {
-  const [isFormVisible, setIsFormVisible] = useState(false);
-  const [happyParticles, setHappyParticles] = useState(false);
-  const [sadParticles, setSadParticles] = useState(false);
-
+  // Smoothly scroll to the accordion section (used by mobile shortcut button)
   const scrollToForm = () => {
-    setIsFormVisible(true);
-    // Add a small delay to ensure the form is rendered before scrolling
-    setTimeout(() => {
-      document.getElementById("form")?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }, 200);
+    document.getElementById("accordion")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
   };
 
   return (
@@ -36,9 +27,7 @@ export default function Page() {
       }}
       id="header"
     >
-      {happyParticles && <Particles content="😍" count={200} />}
-      {sadParticles && <Particles content="😭" count={150} />}
-      {/* Header */}
+      {/* Header (logo, date, mobile shortcut link) */}
       <motion.div
         className="flex justify-between items-center max-w-3xl mx-auto mb-5"
         initial={{ y: -50, opacity: 0 }}
@@ -71,8 +60,17 @@ export default function Page() {
         >
           20. září 2025
         </motion.p>
+
+        {/* Mobile-only shortcut to additional info (smooth scroll) */}
+        <Button
+          variant="link"
+          className="block md:hidden"
+          onClick={scrollToForm}
+        >
+          <p className="text-[#BF4A47]">Informace</p>
+        </Button>
       </motion.div>
-      {/* Disco + text */}
+      {/* Disco + text (hero) */}
       <div className="flex flex-col md:flex-row justify-center items-center gap-5">
         <motion.div
           className="relative w-42 h-42 md:w-[300px] md:h-[300px] overflow-hidden"
@@ -97,7 +95,7 @@ export default function Page() {
           Budeme se brát a zveme tě na svatbu!
         </motion.h2>
       </div>
-      {/* Text + photo*/}
+      {/* Text + photo (intro copy and image) */}
       <motion.div
         className="flex flex-col md:flex-row max-w-3xl mx-auto gap-10 my-10"
         initial={{ y: 50, opacity: 0 }}
@@ -157,12 +155,13 @@ export default function Page() {
           />
         </motion.div>
       </motion.div>
-      {/* Buttons */}
+      {/* Accordion (additional wedding information) */}
       <motion.div
-        className="flex flex-col justify-center items-center gap-10 mt-15 mb-10 md:my-20"
+        className="flex flex-col justify-center items-center gap-5 mt-15 mb-10 md:my-15 max-w-3xl mx-auto"
         initial={{ y: 50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 1.4, duration: 0.8 }}
+        id="accordion" // Anchor target for the "Informace" shortcut
       >
         <motion.h2
           className="text-2xl font-medium"
@@ -170,42 +169,26 @@ export default function Page() {
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 1.6, duration: 0.6 }}
         >
-          Dorazíte na naši svatbu?
+          Doplňující informace ke svatbě
         </motion.h2>
+        <p>
+          Milí hosté,
+          <br />
+          <br />
+          svatba se blíží a my se na vás moc těšíme! Níže najdete pár
+          praktických informací, které by se vám mohly hodit.
+        </p>
         <motion.div
-          className="flex justify-center items-center gap-10"
+          className="w-full max-w-3xl"
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 1.8, duration: 0.6 }}
         >
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Button
-              className="bg-[#BF4A47] text-white rounded-2xl hover:bg-[#BF4A47]/80"
-              size="lg"
-              onClick={() => {
-                scrollToForm();
-                setHappyParticles(true);
-              }}
-            >
-              Ano, dorazím
-            </Button>
-          </motion.div>
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Button
-              className="bg-[#664e27] text-white rounded-2xl hover:bg-[#664e27]/80"
-              size="lg"
-              onClick={() => {
-                setIsFormVisible(false);
-                setSadParticles(true);
-              }}
-            >
-              Ne, nedorazím
-            </Button>
-          </motion.div>
+          <AditionalInfoAccordion />
         </motion.div>
       </motion.div>
-      <Form isVisible={isFormVisible} setIsVisible={setIsFormVisible} />
-      <div className="text-center text-xs text-gray-500 mt-10 mb-2">
+      {/* Footer */}
+      <div className="text-center text-xs text-gray-500 mt-10 mb-4">
         Made with ❤️ by David
       </div>
     </motion.div>
