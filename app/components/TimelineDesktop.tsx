@@ -45,11 +45,7 @@ export default function TimelineDesktop({ events, className }: TimelineDesktopPr
                   {/* Time label */}
                   <div className="text-sm font-semibold text-[#BF4A47]">{event.time}</div>
                   {/* Event title */}
-                  <div className="mt-1 text-base font-medium">{event.title}</div>
-                  {/* Optional short description */}
-                  {event.description ? (
-                    <p className="mt-1 text-sm text-neutral-600">{event.description}</p>
-                  ) : null}
+                  <p className="mt-1">{event.title}</p>
                 </div>
               </div>
             </div>

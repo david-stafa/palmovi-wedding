@@ -174,7 +174,7 @@ export default function Page() {
       </motion.div>
       {/* Timeline */}
       <motion.div
-        className="relative w-full mx-auto"
+        className="relative w-full mx-auto md:mt-20"
         initial={{ x: 50, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ delay: 1.2, duration: 0.8 }}
