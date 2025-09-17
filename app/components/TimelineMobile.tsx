@@ -14,7 +14,7 @@ export default function TimelineMobile({ events, className }: TimelineMobileProp
   if (!events || events.length === 0) return null;
 
   return (
-    <div className={cn("md:hidden w-full flex justify-center", className)}>
+    <div className={cn("xl:hidden w-full flex justify-center", className)}>
       <div className="relative mx-auto max-w-md px-4 py-8">
         <div className="absolute left-[23px] top-0 bottom-0 w-[2px] bg-[#E6CFC3]" />
         <ol className="relative ml-8 space-y-8">

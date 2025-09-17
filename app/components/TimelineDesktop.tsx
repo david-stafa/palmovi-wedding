@@ -28,7 +28,7 @@ export default function TimelineDesktop({ events, className }: TimelineDesktopPr
   if (!events || events.length === 0) return null;
 
   return (
-    <div className={cn("hidden md:block w-full", className)}>
+    <div className={cn("hidden xl:block w-full", className)}>
       {/* Outer container; only visible on md+ */}
       <div className="relative mx-auto max-w-5xl px-6 py-10">
         {/* Horizontal baseline across all events */}
