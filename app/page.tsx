@@ -5,6 +5,10 @@ import * as motion from "motion/react-client";
 import Image from "next/image";
 import Link from "next/link";
 import AditionalInfoAccordion from "./components/AditionalInfoAccordion";
+import TimelineDesktop, {
+  type TimelineEvent,
+} from "./components/TimelineDesktop";
+import TimelineMobile from "./components/TimelineMobile";
 import { Button } from "@/components/ui/button";
 
 export default function Page() {
@@ -15,6 +19,19 @@ export default function Page() {
       block: "start",
     });
   };
+
+  const timelineEvents: TimelineEvent[] = [
+    { time: "11:45 – 12:00", title: "Příjezd hostů" },
+    { time: "12:30", title: "Obřad" },
+    { time: "13:00", title: "Společné focení" },
+    { time: "13:30", title: "Společná hostina" },
+    { time: "15:10 / 15:50 / 16:30", title: "Komentované prohlídky" },
+    { time: "17:15", title: "Krájení dortu" },
+    { time: "17:30", title: "Kapela na vlnách" },
+    { time: "19:00", title: "První tanec" },
+    { time: "20:30", title: "Mika a Vartin kvíz" },
+    { time: "21:50", title: "Afterparty" },
+  ];
 
   return (
     <motion.div
@@ -155,9 +172,29 @@ export default function Page() {
           />
         </motion.div>
       </motion.div>
+      {/* Timeline */}
+      <motion.div
+        className="relative w-full mx-auto"
+        initial={{ x: 50, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ delay: 1.2, duration: 0.8 }}
+      >
+        <motion.h2
+          className="text-2xl font-medium text-center mb-7"
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ delay: 1.6, duration: 0.6 }}
+        >
+          Program svatby
+        </motion.h2>
+        <div className="mx-auto w-11/12 md:w-9/12">
+          <TimelineDesktop events={timelineEvents} />
+          <TimelineMobile events={timelineEvents} />
+        </div>
+      </motion.div>
       {/* Accordion (additional wedding information) */}
       <motion.div
-        className="flex flex-col justify-center items-center gap-5 mt-15 mb-10 md:my-15 max-w-3xl mx-auto"
+        className="flex flex-col justify-center items-center gap-5 mt-10 mb-10 md:my-15 max-w-3xl mx-auto"
         initial={{ y: 50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 1.4, duration: 0.8 }}
